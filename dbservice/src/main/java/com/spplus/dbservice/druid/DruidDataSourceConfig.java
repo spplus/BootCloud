@@ -23,7 +23,7 @@ import com.spplus.dbservice.dynamicds.DynamicDataSource;
 @Configuration
 @ConditionalOnClass(com.alibaba.druid.pool.DruidDataSource.class)
 @ConditionalOnProperty(name = "spring.datasource.type", havingValue = "com.alibaba.druid.pool.DruidDataSource", matchIfMissing = true)
-@ServletComponentScan("com.xiaolyuh.filters")
+@ServletComponentScan("com.spplus.filters")
 public class DruidDataSourceConfig {
 
     private Logger logger = LoggerFactory.getLogger(DruidDataSourceConfig.class);
