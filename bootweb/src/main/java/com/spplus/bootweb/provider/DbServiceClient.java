@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spplus.bootcm.bean.Person;
+import com.spplus.bootcm.bean.UserInfo;
 
 
 @FeignClient("dbservice")
@@ -21,4 +22,7 @@ public interface DbServiceClient {
     
     @RequestMapping(method = RequestMethod.GET, value = "/all2")
     List<Person> all2();
+    
+    @RequestMapping(method = RequestMethod.GET, value = "/finduser")
+    UserInfo findUserByUserName(@RequestParam(value = "username") String username);
 }
