@@ -6,14 +6,15 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 
 
-@Aspect
-@Component
-@Order(-1)		// 注意：这个地方为-1，确保被最先调用到
+//@Aspect
+//@Component
+//@Order(-1)		// 注意：这个地方为-1，确保被最先调用到
 public class DynamicDataSourceAspect {
 
     @Before("@annotation(DS)")
@@ -25,11 +26,14 @@ public class DynamicDataSourceAspect {
         //获得访问的方法名
         String methodName = point.getSignature().getName();
         //得到方法的参数的类型
-        //Class[] argClass = ((MethodSignature)point.getSignature()).getParameterTypes();
+       // Class[] argClass = point.getSignature().getParameterTypes();
+        
+        Class[] argClass = ((MethodSignature)point.getSignature()).getMethod().getParameterTypes();
+        
         String dataSource = DataSourceContextHolder.DEFAULT_DS;
         try {
             // 得到访问的方法对象
-            Method method = className.getMethod(methodName);
+            Method method = className.getMethod(methodName,argClass);
 
             // 判断是否存在@DS注解
             if (method.isAnnotationPresent(DS.class)) {
@@ -39,7 +43,7 @@ public class DynamicDataSourceAspect {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }
+       	}
 
         // 切换数据源
         DataSourceContextHolder.setDB(dataSource);

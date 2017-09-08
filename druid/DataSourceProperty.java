@@ -2,7 +2,16 @@ package com.spplus.dbservice.druid;
 
 public class DataSourceProperty {
 
-	// 数据库配置
+		private String dbname;
+		public String getDbname() {
+			return dbname;
+		}
+
+		public void setDbname(String dbname) {
+			this.dbname = dbname;
+		}
+
+		// 数据库配置
 		private String url;
 
 		private String username;

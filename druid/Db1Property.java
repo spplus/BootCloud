@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
  *
  */
 
-@Component
-@PropertySource("classpath:database.properties")
-@ConfigurationProperties(prefix = "spring.datasource.druid")
+//@Component
+//@PropertySource("classpath:database.properties")
+//@ConfigurationProperties(prefix = "spring.datasource.druid")
 public class Db1Property extends DataSourceProperty{
 
 }

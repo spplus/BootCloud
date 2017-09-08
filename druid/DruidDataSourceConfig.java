@@ -1,8 +1,8 @@
 package com.spplus.dbservice.druid;
 
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.sql.DataSource;
 
@@ -16,14 +16,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
-import com.alibaba.druid.pool.DruidDataSource;
+import com.atomikos.jdbc.AtomikosDataSourceBean;
 import com.spplus.dbservice.dynamicds.DynamicDataSource;
 
 
-@Configuration
-@ConditionalOnClass(com.alibaba.druid.pool.DruidDataSource.class)
-@ConditionalOnProperty(name = "spring.datasource.type", havingValue = "com.alibaba.druid.pool.DruidDataSource", matchIfMissing = true)
-@ServletComponentScan("com.spplus.filters")
+//@Configuration
+//@ConditionalOnClass(com.alibaba.druid.pool.DruidDataSource.class)
+//@ConditionalOnClass(com.atomikos.jdbc.AtomikosDataSourceBean.class)
+//@ConditionalOnProperty(name = "spring.datasource.type", havingValue = "com.atomikos.jdbc.AtomikosDataSourceBean", matchIfMissing = true)
+//@ServletComponentScan("com.spplus.filters")
 public class DruidDataSourceConfig {
 
     private Logger logger = LoggerFactory.getLogger(DruidDataSourceConfig.class);
@@ -42,13 +43,28 @@ public class DruidDataSourceConfig {
     
 
     public DataSource createDataSource(DataSourceProperty dp){
+    	AtomikosDataSourceBean datasource = new AtomikosDataSourceBean();
+    
+    
+    	datasource.setUniqueResourceName(dp.getDbname());
+    	datasource.setXaDataSourceClassName(dp.getDriverClassName());
+    	Properties p = new Properties();
+    	p.setProperty ( "user" , dp.getUsername());
+    	p.setProperty ( "password" , dp.getPassword());
+    	p.setProperty ( "URL" , dp.getUrl());
+    	datasource.setXaProperties (p);
+    	datasource.setTestQuery(dp.getValidationQuery());
+    	datasource.setMaxPoolSize(dp.getMaxActive());
+    	datasource.setMinPoolSize(dp.getMinIdle());
+    	datasource.setMaxIdleTime(dp.getMaxWait());
+    	
+    	/*
     	DruidDataSource datasource = new DruidDataSource();
-
+    	
         datasource.setUrl(dp.getUrl());
         datasource.setUsername(dp.getUsername());
         datasource.setPassword(dp.getPassword());
         datasource.setDriverClassName(dp.getDriverClassName());
-
         datasource.setInitialSize(dp.getInitialSize());
         datasource.setMinIdle(dp.getMinIdle());
         datasource.setMaxActive(dp.getMaxActive());
@@ -71,7 +87,7 @@ public class DruidDataSourceConfig {
             logger.error("druid configuration initialization filter", e);
         }
         datasource.setConnectionProperties(dp.getConnectionProperties());
-
+		*/
         return datasource;
     }
 
@@ -150,6 +166,9 @@ public class DruidDataSourceConfig {
     @Primary 	//在同样的DataSource中，首先使用被标注的DataSource
     public DataSource dataSource() {
         DynamicDataSource dynamicDataSource = new DynamicDataSource();
+        
+        dp1.setDbname("db1");
+        dp2.setDbname("db2");
         
         // 创建数据源
         DataSource db1 = createDataSource(dp1);
