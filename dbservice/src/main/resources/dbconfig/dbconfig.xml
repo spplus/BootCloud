@@ -18,21 +18,19 @@
         <property name="configLocation" value="classpath:dbconfig/mybatis-mysql-config.xml"/>
     </bean>
     
-    <bean id="sqlSessionFactoryDb2" class="org.mybatis.spring.SqlSessionFactoryBean">
+<!--     <bean id="sqlSessionFactoryDb2" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSourceDb2"/>
         <property value="classpath*:mybatis/**/*.xml" name="mapperLocations"></property>
         <property name="configLocation" value="classpath:dbconfig/mybatis-mysql-config.xml"/>
-    </bean>
+    </bean> -->
      
     
-    <!-- SqlSessionFactoryBean End -->
-    <!-- 可切换Session Factory的Dao Support -->
-	<bean id="dynamicSqlSessionDaoSupport" class="com.spplus.db.DynamicSqlSessionDaoSupport">
+    <bean id="dynamicSqlSessionDaoSupport" class="com.spplus.db.DynamicSqlSessionDaoSupport">
         <property name="targetSqlSessionFactorys">
-            <map key-type="java.lang.String">           
-                <entry value-ref="sqlSessionFactoryDb1" 	key="db1"></entry>
-                <entry value-ref="sqlSessionFactoryDb2" 	key="db2"></entry>
-            </map>  
+            <map key-type="java.lang.String">            
+                <entry value-ref="sqlSessionFactoryDb1" key="db1"></entry>
+               <!--  <entry value-ref="sqlSessionFactoryDb2" key="db2"></entry>  -->               
+            </map>   
         </property>  
         <property name="defaultTargetSqlSessionFactory" ref="sqlSessionFactoryDb1"></property>
     </bean>

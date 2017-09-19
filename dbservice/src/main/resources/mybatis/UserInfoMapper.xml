@@ -25,7 +25,7 @@
  
 
   <!-- 对这个语句禁用二级缓存 -->
-  <select id="findByUsername" resultMap="BaseResultMap" useCache="false">
+  <select id="findByUsername" resultMap="BaseResultMap" >
     select
     <include refid="Base_Column_List" />
     from user_info where username=#{username,jdbcType=VARCHAR}

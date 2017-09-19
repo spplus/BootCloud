@@ -20,7 +20,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */
+ 
 
 package com.spplus.dbservice.page;
 
@@ -30,7 +30,7 @@ import java.util.List;
 
 import com.github.pagehelper.Page;
 
-/**
+*//**
  * 对Page<E>结果进行包装
  * <p/>
  * 新增分页的多项属性，主要参考:http://bbs.csdn.net/topics/360010907
@@ -39,7 +39,7 @@ import com.github.pagehelper.Page;
  * @version 3.3.0
  * @since 3.2.2
  * 项目地址 : http://git.oschina.net/free/Mybatis_PageHelper
- */
+ *//*
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class PageInfo<T> implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -62,11 +62,11 @@ public class PageInfo<T> implements Serializable {
     public PageInfo() {
     }
 
-    /**
+    *//**
      * 包装Page对象
      *
      * @param list
-     */
+     *//*
     public PageInfo(List<T> list) {
         if (list instanceof Page) {
             Page page = (Page) list;
@@ -90,9 +90,9 @@ public class PageInfo<T> implements Serializable {
         }
     }
 
-    /**
+    *//**
      * 判定页面边界
-     */
+     *//*
     private void judgePageBoudary() {
         isFirstPage = pageNum == 1;
         isLastPage = pageNum == pages;
@@ -169,3 +169,4 @@ public class PageInfo<T> implements Serializable {
         return sb.toString();
     }
 }
+*/

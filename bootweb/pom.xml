@@ -1,69 +1,66 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.spplus</groupId>
-  <artifactId>bootweb</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+	<groupId>com.spplus</groupId>
+	<artifactId>bootweb</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 
-  <name>bootweb</name>
-  <url>http://maven.apache.org</url>
+	<name>bootweb</name>
+	<url>http://maven.apache.org</url>
 
-   
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.6.RELEASE</version>
+	</parent>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 
-  <dependencies>
-  
-  	<dependency>
+	<dependencies>
+
+		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-feign</artifactId>
-	</dependency>
-	<dependency>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka</artifactId>
-	</dependency>
-  	
-  	<dependency>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-spring</artifactId>
-			<version>1.4.0</version>
-	</dependency>
-  	<dependency>
-  		<groupId>com.spplus</groupId>
-  		<artifactId>bootcm</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
-  	</dependency>
+			<version>1.3.2</version>
+		</dependency>
+		<dependency> 
+			<groupId>com.spplus</groupId> 
+			<artifactId>bootcm</artifactId> 
+			<version>0.0.1-SNAPSHOT</version> 
+		</dependency> 
 
 
+		<!-- <dependency> <groupId>org.codehaus.groovy</groupId> <artifactId>groovy</artifactId> 
+			<version>2.4.11</version> </dependency> -->
+	</dependencies>
 
-  	<dependency>
-  		<groupId>org.codehaus.groovy</groupId>
-  		<artifactId>groovy</artifactId>
-  		<version>2.4.11</version>
-  	</dependency>
-  </dependencies>
-  
-  <dependencyManagement>
+	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Brixton.RELEASE</version>
+				<version>Brixton.SR5</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-  <build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
+
 </project>

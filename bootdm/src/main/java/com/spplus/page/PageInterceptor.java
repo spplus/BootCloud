@@ -35,7 +35,7 @@ import org.apache.ibatis.type.TypeHandlerRegistry;
  * 2.构造带有limit子句的sql替换原始的sql)
  * 目前只支持把page放到HashMap中(或使用接口时，把page作为方法的参数),并且key为"page"
  */
-@Intercepts({ @Signature(type = StatementHandler.class, method = "prepare", args = { Connection.class ,Integer.class}) })
+@Intercepts({ @Signature(type = StatementHandler.class, method = "prepare", args = { Connection.class}) })
 @SuppressWarnings("rawtypes")
 public class PageInterceptor implements Interceptor {
 	public static final String PAGE_KEY = "page";

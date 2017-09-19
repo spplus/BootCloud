@@ -11,6 +11,7 @@ import com.spplus.bootcm.bean.Person;
 import com.spplus.bootcm.bean.UserInfo;
 
 
+
 @FeignClient("dbservice")
 public interface DbServiceClient {
 

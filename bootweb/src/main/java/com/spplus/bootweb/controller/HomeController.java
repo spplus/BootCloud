@@ -1,7 +1,10 @@
 package com.spplus.bootweb.controller;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -9,24 +12,24 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.spplus.bootcm.logger.SpLogger;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
-
 @Controller
 public class HomeController {
 	
 	
     @RequestMapping({"/","/index"})
     public String index(){
-        return"/index";
+        return "index";
     }
+    
+//    @RequestMapping(value = "/login")
+//    public String login(){
+//        return "login";
+//    }
 
-    @RequestMapping("/login")
-    public String login(HttpServletRequest request, String username,String password,Map<String,Object> map) throws Exception{
+    @RequestMapping(value = "/login")
+    public String loginCheck(HttpServletRequest request, String username,String password,Map<String,Object> map) throws Exception{
         
-    	SpLogger.debug("HomeController.login()");
+//    	SpLogger.debug("HomeController.login()");
         // 登录失败从request中获取shiro处理的异常信息。
         // shiroLoginFailure:就是shiro异常类的全类名.
        
@@ -40,28 +43,28 @@ public class HomeController {
 	            
 	            if(subject.isAuthenticated()){
 	            
-	            	SpLogger.debug("登陆成功:"+username);
+//	            	SpLogger.debug("登陆成功:"+username);
 	            	map.put("user",username);
 	            	return "index";
 	            }
         	}catch(Exception e){
-        		SpLogger.warn(e.getMessage());
+//        		SpLogger.warn(e.getMessage());
         		
         		 String exception = e.getClass().getName();
-        	     SpLogger.info("exception=" + exception);
+//        	     SpLogger.info("exception=" + exception);
         	     String msg = "hello";
         	     if (exception != null) {
         	         if (UnknownAccountException.class.getName().equals(exception)) {
-        	        	 SpLogger.info("UnknownAccountException -- > 账号不存在：");
+//        	        	 SpLogger.info("UnknownAccountException -- > 账号不存在：");
         	        	 msg = "UnknownAccountException -- > 账号不存在：";
         	         } else if (IncorrectCredentialsException.class.getName().equals(exception)) {
-        	        	 SpLogger.info("IncorrectCredentialsException -- > 密码不正确：");
+//        	        	 SpLogger.info("IncorrectCredentialsException -- > 密码不正确：");
         	        	 msg = "IncorrectCredentialsException -- > 密码不正确：";
         	         } else if ("kaptchaValidateFailed".equals(exception)) {
-        	         	SpLogger.info("kaptchaValidateFailed -- > 验证码错误");
+//        	         	SpLogger.info("kaptchaValidateFailed -- > 验证码错误");
         	         	msg = "kaptchaValidateFailed -- > 验证码错误";
         	         } else {
-        	        	 SpLogger.info("UnknownAccountException -- > 账号不存在：");
+//        	        	 SpLogger.info("UnknownAccountException -- > 账号不存在：");
         	        	 msg = "UnknownAccountException -- > 账号不存在：";
         	         }
         	      }
@@ -76,7 +79,7 @@ public class HomeController {
 
     @RequestMapping("/403")
     public String unauthorizedRole(){
-        SpLogger.warn("------没有权限-------");
+//        SpLogger.warn("------没有权限-------");
         return "403";
     }
 

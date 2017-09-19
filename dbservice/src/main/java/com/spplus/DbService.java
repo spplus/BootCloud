@@ -8,8 +8,6 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ImportResource;
 
-import com.spplus.bootcm.logger.SpLogger;
-
 @ServletComponentScan
 @ImportResource("classpath:dbconfig/dbconfig.xml")  
 // 这两个exclude 千万不能少，否则会出现 required a single bean, but 2 were found: 被这个问题，整整折磨了一天
@@ -18,7 +16,7 @@ import com.spplus.bootcm.logger.SpLogger;
 public class DbService {
 
 	public static void main(String[] args) {
-		SpLogger.info("DbService 启动成功.");
+//		SpLogger.info("DbService 启动成功.");
 		SpringApplication.run(DbService.class, args);
 	}
 }
