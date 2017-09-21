@@ -12,6 +12,8 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.spplus.bootcm.logger.SpLogger;
+
 @Controller
 public class HomeController {
 	
@@ -21,15 +23,11 @@ public class HomeController {
         return "index";
     }
     
-//    @RequestMapping(value = "/login")
-//    public String login(){
-//        return "login";
-//    }
 
     @RequestMapping(value = "/login")
     public String loginCheck(HttpServletRequest request, String username,String password,Map<String,Object> map) throws Exception{
         
-//    	SpLogger.debug("HomeController.login()");
+    	SpLogger.debug("HomeController.login()");
         // 登录失败从request中获取shiro处理的异常信息。
         // shiroLoginFailure:就是shiro异常类的全类名.
        
@@ -43,31 +41,32 @@ public class HomeController {
 	            
 	            if(subject.isAuthenticated()){
 	            
-//	            	SpLogger.debug("登陆成功:"+username);
+	            	SpLogger.debug("登陆成功:"+username);
 	            	map.put("user",username);
 	            	return "index";
 	            }
         	}catch(Exception e){
-//        		SpLogger.warn(e.getMessage());
-        		
+
         		 String exception = e.getClass().getName();
-//        	     SpLogger.info("exception=" + exception);
+
         	     String msg = "hello";
         	     if (exception != null) {
         	         if (UnknownAccountException.class.getName().equals(exception)) {
-//        	        	 SpLogger.info("UnknownAccountException -- > 账号不存在：");
+
         	        	 msg = "UnknownAccountException -- > 账号不存在：";
         	         } else if (IncorrectCredentialsException.class.getName().equals(exception)) {
-//        	        	 SpLogger.info("IncorrectCredentialsException -- > 密码不正确：");
+
         	        	 msg = "IncorrectCredentialsException -- > 密码不正确：";
         	         } else if ("kaptchaValidateFailed".equals(exception)) {
-//        	         	SpLogger.info("kaptchaValidateFailed -- > 验证码错误");
+
         	         	msg = "kaptchaValidateFailed -- > 验证码错误";
         	         } else {
-//        	        	 SpLogger.info("UnknownAccountException -- > 账号不存在：");
+
         	        	 msg = "UnknownAccountException -- > 账号不存在：";
         	         }
         	      }
+        	     
+        	    SpLogger.info(msg);
         	    map.put("msg", msg);
         		
         	}
@@ -79,7 +78,7 @@ public class HomeController {
 
     @RequestMapping("/403")
     public String unauthorizedRole(){
-//        SpLogger.warn("------没有权限-------");
+        SpLogger.warn("------没有权限-------");
         return "403";
     }
 

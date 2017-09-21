@@ -3,14 +3,11 @@ package com.spplus.db;
 import java.io.Serializable;
 import java.util.List;
 
-import org.springframework.stereotype.Component;
-
 
 /**
  * Mybatis基类
  */
 
-//@Component
 @SuppressWarnings("unchecked")
 public class MybatisDao extends DynamicSqlSessionDaoSupport{
 	public  int insert(String key, Object object) {

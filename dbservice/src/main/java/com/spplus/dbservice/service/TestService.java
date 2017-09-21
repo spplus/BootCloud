@@ -1,9 +1,11 @@
 package com.spplus.dbservice.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Service;
 
 import com.spplus.bootcm.bean.UserInfo;
+import com.spplus.bootcm.util.DataSourceSelect;
 import com.spplus.db.DataSourceSwitch;
 import com.spplus.db.MybatisDao;
 
@@ -17,7 +19,7 @@ public class TestService {
 	
 	public void  insertTest(int i) throws Exception{
 	
-		DataSourceSwitch.setDataSourceType("db1");
+		DataSourceSwitch.setDataSourceType(DataSourceSelect.DS_DB1);
 		baseDao.insert("UserInfoMapper.insertUser", "");
 		
 		
