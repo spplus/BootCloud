@@ -13,12 +13,12 @@ import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.spplus.bootcm.bean.UserInfo;
-import com.spplus.bootweb.provider.DbServiceClient;
+import com.spplus.bootweb.provider.DbServiceProvider;
 
 
 public class MyShiroRealm extends AuthorizingRealm {
 	@Autowired
-	DbServiceClient dbServiceClient;
+	DbServiceProvider dbServiceClient;
 	
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {

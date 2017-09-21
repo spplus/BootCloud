@@ -13,7 +13,7 @@ import com.spplus.bootcm.bean.UserInfo;
 
 
 @FeignClient("dbservice")
-public interface DbServiceClient {
+public interface DbServiceProvider {
 
     @RequestMapping(method = RequestMethod.GET, value = "/add")
     Integer add(@RequestParam(value = "a") Integer a, @RequestParam(value = "b") Integer b);

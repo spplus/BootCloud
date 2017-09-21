@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 
-import com.spplus.bootweb.provider.DbServiceClient;
+import com.spplus.bootweb.provider.DbServiceProvider;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

@@ -8,10 +8,12 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
+import com.spplus.bootcm.logger.SpLogger;
+
 @EnableFeignClients
 @EnableDiscoveryClient
 @SpringBootApplication
-public class BootWeb {
+public class WebApplication {
 
 	@Bean
 	@LoadBalanced
@@ -20,7 +22,7 @@ public class BootWeb {
 	}
 
 	public static void main(String[] args) {
-//		SpLogger.info("BootWeb 启动成功.");
-		SpringApplication.run(BootWeb.class, args);
+		SpLogger.info("WebApplication 启动成功.");
+		SpringApplication.run(WebApplication.class, args);
 	}
 }

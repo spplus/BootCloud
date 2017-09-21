@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spplus.bootcm.bean.Person;
-import com.spplus.bootweb.provider.DbServiceClient;
+import com.spplus.bootweb.provider.DbServiceProvider;
 
 
 
@@ -16,7 +16,7 @@ import com.spplus.bootweb.provider.DbServiceClient;
 public class DataController {
 
 	 @Autowired
-	 DbServiceClient computeClient;
+	 DbServiceProvider computeClient;
 	
 	 @RequestMapping("/all")
 	 public List<Person> all() {
